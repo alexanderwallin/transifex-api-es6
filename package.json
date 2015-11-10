@@ -8,10 +8,16 @@
   },
   "author": "Alexander Wallin <office@alexanderwallin.com> (http://alexanderwallin.com)",
   "license": "ISC",
-  "keywords": ["transifex"],
+  "keywords": [
+    "transifex"
+  ],
   "homepage": "https://github.com/alexanderwallin/transifex-api-es6",
   "repository": {
     "type": "git",
     "url": "alexanderwallin/transifex-api-es6"
+  },
+  "dependencies": {
+    "q": "^1.4.1",
+    "request": "^2.65.0"
   }
 }
