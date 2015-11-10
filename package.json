@@ -1,0 +1,17 @@
+{
+  "name": "transifex-api-es6",
+  "version": "0.0.1",
+  "description": "Promise-based Transifex API client for node, written in es6",
+  "main": "TransifexApi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Wallin <office@alexanderwallin.com> (http://alexanderwallin.com)",
+  "license": "ISC",
+  "keywords": ["transifex"],
+  "homepage": "https://github.com/alexanderwallin/transifex-api-es6",
+  "repository": {
+    "type": "git",
+    "url": "alexanderwallin/transifex-api-es6"
+  }
+}
