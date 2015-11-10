@@ -7,6 +7,8 @@ var request   = require('request');
 /**
  * Transifex node/js API
  *
+ * A promise-based Transifex API client for node, written in es6.
+ *
  * @author Alexander Wallin <office@alexanderwallin.com>
  * @url https://github.com/alexanderwallin/node-transifex-api
  */
