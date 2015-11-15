@@ -1,6 +1,10 @@
 ## transifex-api-es6
 
-A promise-based Transifex API client for node, written in es6.
+A promise-based Transifex API client for node, written in es6. Promises are thenable using the [q library][q].
+
+[q]: https://github.com/kriskowal/q
+
+The motivation behind this API is that there are no modern, promise-based JS API for Transifex out there that I could find. If found those that exist being difficult to overview or understand, so I started building on a new one.
 
 ### Installation
 
@@ -36,3 +40,7 @@ api.getTranslationStrings('en')
   // strings -> Set of string objects
 })
 ```
+
+### Development
+
+This project is in early development. Pull requests are more than welcome!
