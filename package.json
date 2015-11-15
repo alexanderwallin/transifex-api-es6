@@ -1,6 +1,6 @@
 {
   "name": "transifex-api-es6",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Promise-based Transifex API client for node, written in es6",
   "main": "TransifexApi.js",
   "scripts": {
