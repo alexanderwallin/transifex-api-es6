@@ -88,6 +88,28 @@ class TransifexApi {
   }
 
   /**
+   * Sends a DELETE request
+   * @param  {string} url The relative request URL
+   * @return {object}     Success or error object
+   */
+  _delete(url) {
+    var deferred = Q.defer();
+
+    request({
+      method: 'DELETE',
+      url: `${this.baseUrl}${url}`,
+      auth: { user: this.user, pass: this.password, sendImmediately: true },
+    }, (err, response, body) => {
+      if (err)
+        deferred.reject(err);
+      else
+        deferred.resolve(response);
+    });
+
+    return deferred.promise;
+  }
+
+  /**
    * Sets the resource slug
    * @param {string} resourceName The resource slug
    */
@@ -136,6 +158,17 @@ class TransifexApi {
    */
   createResource(resource) {
     return this._post('/resources', resource);
+  }
+
+  /**
+   * Deletes a resource
+   * @param  {string} resourceName (Optional) The slug of the resource
+   * @return {object}              Success or error object
+   */
+  deleteResource(resourceName) {
+    resourceName = resourceName || this.resourceName;
+
+    return this._delete(`/resource/${resourceName}`);
   }
 
   /**
