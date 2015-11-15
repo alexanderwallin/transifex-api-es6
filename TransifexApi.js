@@ -53,6 +53,14 @@ class TransifexApi {
   }
 
   /**
+   * Sets the resource slug
+   * @param {string} resourceName The resource slug
+   */
+  setResourceName(resourceName) {
+    this.resourceName = resourceName;
+  }
+
+  /**
    * Returns an list of languages that belong to the project
    */
   getProjectLanguages() {
