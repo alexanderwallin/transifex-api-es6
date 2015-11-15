@@ -61,6 +61,14 @@ class TransifexApi {
   }
 
   /**
+   * Returns information about the project
+   * @return {object} A project instance
+   */
+  getProject() {
+    return this._get('').then(results => JSON.parse(results));
+  }
+
+  /**
    * Returns an list of languages that belong to the project
    */
   getProjectLanguages() {
