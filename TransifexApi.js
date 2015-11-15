@@ -32,18 +32,24 @@ class TransifexApi {
   }
 
   /**
-   * Fetches some content from Transifex
-   * @param {string} url An API URL relative to the project
+   * Sends a request
+   * @param  {string} url     Project relative URL
+   * @param  {Object} options Request parameters
+   * @return {Promise}        A q promise
    */
-  _get(url) {
-    var deferred = Q.defer();
+  _send(url, options = {}) {
+    const deferred = Q.defer();
 
-    request({
+    // Build request options
+    let requestOptions = {
       method: 'GET',
-      url: this.baseUrl + url,
+      url: `${this.baseUrl}${url}`,
       auth: { user: this.user, pass: this.password, sendImmediately: true },
-      encoding: 'utf8'
-    }, function(err, response, body) {
+    };
+    for (let key in options)
+      requestOptions[key] = options[key];
+
+    request(requestOptions, (err, response, body) => {
       if (err)
         deferred.reject(err);
       else
@@ -54,9 +60,18 @@ class TransifexApi {
   }
 
   /**
+   * Fetches some content from Transifex
+   * @param {string}   url An API URL relative to the project
+   * @return {Promise}     A q promise
+   */
+  _get(url) {
+    return this._send(url);
+  }
+
+  /**
    * Returns a GET response from Transifex as JSON
-   * @param  {string} url An API URL relative to the project
-   * @return {object}     The response parsed as JSON
+   * @param  {string}  url An API URL relative to the project
+   * @return {Promise}     The response parsed as JSON
    */
   _getJson(url) {
     return this._get(url).then(results => JSON.parse(results));
@@ -64,49 +79,27 @@ class TransifexApi {
 
   /**
    * Send a POST request with the given data
-   * @param  {string} url  The request URL
-   * @param  {object} data Key/value request parameters
-   * @return {object}      Success or error object
+   * @param  {string}  url  The request URL
+   * @param  {object}  data Key/value request parameters
+   * @return {Promise}      A q promise
    */
   _post(url, data = {}) {
-    var deferred = Q.defer();
-
-    request({
+    return this._send(url, {
       method: 'POST',
       json: true,
-      url: `${this.baseUrl}${url}`,
       body: data,
-      auth: { user: this.user, pass: this.password, sendImmediately: true },
-    }, (err, response, body) => {
-      if (err)
-        deferred.reject(err);
-      else
-        deferred.resolve(response);
     });
-
-    return deferred.promise;
   }
 
   /**
    * Sends a DELETE request
-   * @param  {string} url The relative request URL
-   * @return {object}     Success or error object
+   * @param  {string}  url The relative request URL
+   * @return {Promise}     A q promise
    */
   _delete(url) {
-    var deferred = Q.defer();
-
-    request({
+    return this._send(url, {
       method: 'DELETE',
-      url: `${this.baseUrl}${url}`,
-      auth: { user: this.user, pass: this.password, sendImmediately: true },
-    }, (err, response, body) => {
-      if (err)
-        deferred.reject(err);
-      else
-        deferred.resolve(response);
     });
-
-    return deferred.promise;
   }
 
   /**
