@@ -94,6 +94,17 @@ class TransifexApi {
   }
 
   /**
+   * Returns a resource
+   * @param  {string} resourceName (Optional) The slug of the requested resource.
+   * @return {object}              A resource as JSON
+   */
+  getResource(resourceName) {
+    resourceName = resourceName || this.resourceName;
+
+    return this._getJson(`/resource/${resourceName}`);
+  }
+
+  /**
    * Returns a translation of a given (or default) resource in a given language
    * as .po contents.
    */
