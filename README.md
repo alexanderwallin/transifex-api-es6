@@ -7,10 +7,10 @@ A promise-based Transifex API client for node, written in es6. Promises are then
 
 The motivation behind this API is that there are no modern, promise-based JS API for Transifex out there that I could find. If found those that exist being difficult to overview or understand, so I started building on a new one.
 
-[Installation](#Installation)
-[Usage](#Usage)
-[API Reference](#API_Reference)
-[Contributing](#Contributing)
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [API Reference](#API_Reference)
+* [Contributing](#Contributing)
 
 <a name="Installation"></a>
 ## Installation
@@ -62,14 +62,14 @@ api.getTranslationStrings('en', 'my_resource')
   * [.getTranslationStrings(langCode, resourceName)](#TransifexApi+getTranslationStrings) ⇒ <code>string</code>
 
 <a name="new_TransifexApi_new"></a>
-### new TransifexApi(opts)
+#### new TransifexApi(opts)
 
 | Param | Type | Description |
 | --- | --- | --- |
 | opts | <code>Object</code> | An object with required `projectName`, `user` and `password`                             fields. Optionally takes a `resourceName` which is stored as                             the default resource. |
 
 <a name="TransifexApi+setResourceName"></a>
-### transifexApi.setResourceName(resourceName)
+#### transifexApi.setResourceName(resourceName)
 Sets the default resource slug
 
 
@@ -78,22 +78,22 @@ Sets the default resource slug
 | resourceName | <code>string</code> | A resource slug |
 
 <a name="TransifexApi+getProject"></a>
-### transifexApi.getProject() ⇒ <code>Object</code>
+#### transifexApi.getProject() ⇒ <code>Object</code>
 Returns information about the project
 
-**Returns**: <code>Object</code> - A project instance (wrapper in a promise)  
+**Returns**: <code>Object</code> - A project instance (wrapped in a promise)  
 <a name="TransifexApi+getProjectLanguages"></a>
-### transifexApi.getProjectLanguages() ⇒ <code>Object</code>
+#### transifexApi.getProjectLanguages() ⇒ <code>Object</code>
 Returns an list of languages that belong to the project
 
-**Returns**: <code>Object</code> - A list of languages (wrapper in a promise)  
+**Returns**: <code>Object</code> - A list of languages (wrapped in a promise)  
 <a name="TransifexApi+getResources"></a>
-### transifexApi.getResources() ⇒ <code>array</code>
+#### transifexApi.getResources() ⇒ <code>array</code>
 Returns a list of resources in the project
 
-**Returns**: <code>array</code> - A list of the project's resources (wrapper in a promise)  
+**Returns**: <code>array</code> - A list of the project's resources (wrapped in a promise)  
 <a name="TransifexApi+getResource"></a>
-### transifexApi.getResource(resourceName) ⇒ <code>Object</code>
+#### transifexApi.getResource(resourceName) ⇒ <code>Object</code>
 Returns a resource
 
 
@@ -101,9 +101,9 @@ Returns a resource
 | --- | --- | --- |
 | resourceName | <code>string</code> | (Optional) The slug of the requested resource. |
 
-**Returns**: <code>Object</code> - A resource as JSON (wrapper in a promise)  
+**Returns**: <code>Object</code> - A resource as JSON (wrapped in a promise)  
 <a name="TransifexApi+createResource"></a>
-### transifexApi.createResource(resource) ⇒ <code>Object</code>
+#### transifexApi.createResource(resource) ⇒ <code>Object</code>
 Creates a new resources in the project
 
 
@@ -113,7 +113,7 @@ Creates a new resources in the project
 
 **Returns**: <code>Object</code> - A q promise  
 <a name="TransifexApi+deleteResource"></a>
-### transifexApi.deleteResource(resourceName) ⇒ <code>Object</code>
+#### transifexApi.deleteResource(resourceName) ⇒ <code>Object</code>
 Deletes a resource
 
 
@@ -123,7 +123,7 @@ Deletes a resource
 
 **Returns**: <code>Object</code> - A q promise  
 <a name="TransifexApi+getResourceTranslation"></a>
-### transifexApi.getResourceTranslation(langCode, resourceName) ⇒ <code>string</code>
+#### transifexApi.getResourceTranslation(langCode, resourceName) ⇒ <code>string</code>
 Returns a translation of a given (or default) resource in a given language
 as .po contents.
 
@@ -133,9 +133,9 @@ as .po contents.
 | langCode | <code>string</code> | A language code, e.g. en_US |
 | resourceName | <code>string</code> | (Optional) A resource slug |
 
-**Returns**: <code>string</code> - A PO file as a string (wrapper in a promise)  
+**Returns**: <code>string</code> - A PO file as a string (wrapped in a promise)  
 <a name="TransifexApi+getTranslationStrings"></a>
-### transifexApi.getTranslationStrings(langCode, resourceName) ⇒ <code>string</code>
+#### transifexApi.getTranslationStrings(langCode, resourceName) ⇒ <code>string</code>
 Returns a set of translated strings of a given (or default) resource in a
 given language.
 
@@ -146,7 +146,7 @@ given language.
 | resourceName | <code>string</code> | (Optional) A resource slug |
 
 **Returns**: <code>string</code> - A list of translation strings as JSON objects  
-                              (wrapper in a promise)  
+                              (wrapped in a promise)  
 
 <a name="Contributing"></a>
 ## Contributing

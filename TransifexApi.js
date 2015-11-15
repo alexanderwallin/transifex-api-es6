@@ -131,7 +131,7 @@ class TransifexApi {
   /**
    * Returns information about the project
    * 
-   * @return {Object} A project instance (wrapper in a promise)
+   * @return {Object} A project instance (wrapped in a promise)
    */
   getProject() {
     return this._getJson('');
@@ -140,7 +140,7 @@ class TransifexApi {
   /**
    * Returns an list of languages that belong to the project
    * 
-   * @return {Object} A list of languages (wrapper in a promise)
+   * @return {Object} A list of languages (wrapped in a promise)
    */
   getProjectLanguages() {
     return this._getJson('/languages/');
@@ -149,7 +149,7 @@ class TransifexApi {
   /**
    * Returns a list of resources in the project
    * 
-   * @return {array} A list of the project's resources (wrapper in a promise)
+   * @return {array} A list of the project's resources (wrapped in a promise)
    */
   getResources() {
     return this._getJson('/resources');
@@ -159,7 +159,7 @@ class TransifexApi {
    * Returns a resource
    * 
    * @param  {string} resourceName (Optional) The slug of the requested resource.
-   * @return {Object}              A resource as JSON (wrapper in a promise)
+   * @return {Object}              A resource as JSON (wrapped in a promise)
    */
   getResource(resourceName) {
     resourceName = resourceName || this.resourceName;
@@ -195,7 +195,7 @@ class TransifexApi {
    * 
    * @param  {string} langCode     A language code, e.g. en_US
    * @param  {string} resourceName (Optional) A resource slug
-   * @return {string}              A PO file as a string (wrapper in a promise)
+   * @return {string}              A PO file as a string (wrapped in a promise)
    */
   getResourceTranslation(langCode, resourceName) {
     resourceName = resourceName || this.resourceName;
@@ -211,7 +211,7 @@ class TransifexApi {
    * @param  {string} langCode     A language code, e.g. en_US
    * @param  {string} resourceName (Optional) A resource slug
    * @return {string}              A list of translation strings as JSON objects  
-   *                               (wrapper in a promise)
+   *                               (wrapped in a promise)
    */
   getTranslationStrings(langCode, resourceName) {
     if (!langCode)

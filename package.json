@@ -5,7 +5,7 @@
   "main": "TransifexApi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "jsdoc2md TransifexApi.js -t docs/README.md.hbs -v --partial docs/partials/body.hbs > README.md"
+    "docs": "jsdoc2md TransifexApi.js -t docs/README.md.hbs -v -d 3 --partial docs/partials/body.hbs > README.md"
   },
   "author": "Alexander Wallin <office@alexanderwallin.com> (http://alexanderwallin.com)",
   "license": "ISC",
