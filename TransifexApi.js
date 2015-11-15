@@ -33,6 +33,7 @@ class TransifexApi {
 
   /**
    * Fetches some content from Transifex
+   * @param {string} url An API URL relative to the project
    */
   _get(url) {
     var deferred = Q.defer();
@@ -53,6 +54,15 @@ class TransifexApi {
   }
 
   /**
+   * Returns a GET response from Transifex as JSON
+   * @param  {string} url An API URL relative to the project
+   * @return {object}     The response parsed as JSON
+   */
+  _getJson(url) {
+    return this._get(url).then(results => JSON.parse(results));
+  }
+
+  /**
    * Sets the resource slug
    * @param {string} resourceName The resource slug
    */
@@ -65,15 +75,14 @@ class TransifexApi {
    * @return {object} A project instance
    */
   getProject() {
-    return this._get('').then(results => JSON.parse(results));
+    return this._getJson('');
   }
 
   /**
    * Returns an list of languages that belong to the project
    */
   getProjectLanguages() {
-    return this._get('/languages/')
-    .then((results) => JSON.parse(results));
+    return this._getJson('/languages/');
   }
 
   /**
@@ -97,8 +106,7 @@ class TransifexApi {
 
     resourceName = resourceName || this.resourceName;
 
-    return this._get(`/resource/${resourceName}/translation/${langCode}/strings`)
-    .then((results) => JSON.parse(results));
+    return this._getJson(`/resource/${resourceName}/translation/${langCode}/strings`);
   }
 }
 
