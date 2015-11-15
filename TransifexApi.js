@@ -63,6 +63,31 @@ class TransifexApi {
   }
 
   /**
+   * Send a POST request with the given data
+   * @param  {string} url  The request URL
+   * @param  {object} data Key/value request parameters
+   * @return {object}      Success or error object
+   */
+  _post(url, data = {}) {
+    var deferred = Q.defer();
+
+    request({
+      method: 'POST',
+      json: true,
+      url: `${this.baseUrl}${url}`,
+      body: data,
+      auth: { user: this.user, pass: this.password, sendImmediately: true },
+    }, (err, response, body) => {
+      if (err)
+        deferred.reject(err);
+      else
+        deferred.resolve(response);
+    });
+
+    return deferred.promise;
+  }
+
+  /**
    * Sets the resource slug
    * @param {string} resourceName The resource slug
    */
@@ -102,6 +127,15 @@ class TransifexApi {
     resourceName = resourceName || this.resourceName;
 
     return this._getJson(`/resource/${resourceName}`);
+  }
+
+  /**
+   * Creates a new resources in the project
+   * @param  {object} resource Dictionary with info about the resource
+   * @return {object}          Success or error object
+   */
+  createResource(resource) {
+    return this._post('/resources', resource);
   }
 
   /**
