@@ -16,7 +16,7 @@ The motivation behind this API is that there are no modern, promise-based JS API
 ## Installation
 
 ```bash
-npm install transifex-api-es6
+npm install [--save] [--save-dev] transifex-api-es6
 ```
 
 <a name="Usage"></a>
