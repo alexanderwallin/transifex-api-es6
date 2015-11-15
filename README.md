@@ -1,5 +1,4 @@
 [![view on npm](http://img.shields.io/npm/v/transifex-api-es6.svg)](https://www.npmjs.org/package/transifex-api-es6)
-[![npm module downloads](http://img.shields.io/npm/alexanderwallin/transifex-api-es6.svg)](https://www.npmjs.org/package/transifex-api-es6)
 [![Dependency Status](https://david-dm.org/alexanderwallin/transifex-api-es6.svg)](https://david-dm.org/alexanderwallin/transifex-api-es6)
 
 # transifex-api-es6
