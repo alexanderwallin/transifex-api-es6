@@ -86,6 +86,14 @@ class TransifexApi {
   }
 
   /**
+   * Returns a list of resources in the project
+   * @return {array} A list of the project's resources
+   */
+  getResources() {
+    return this._getJson('/resources');
+  }
+
+  /**
    * Returns a translation of a given (or default) resource in a given language
    * as .po contents.
    */
