@@ -11,9 +11,16 @@ var request   = require('request');
  *
  * @author Alexander Wallin <office@alexanderwallin.com>
  * @url https://github.com/alexanderwallin/node-transifex-api
+ * @class
  */
 class TransifexApi {
 
+  /**
+   * @param  {Object}       opts An object with required `projectName`, `user` and `password`
+   *                             fields. Optionally takes a `resourceName` which is stored as
+   *                             the default resource.
+   * @return {TransifexApi}      A new TransifexApi instance
+   */
   constructor(opts) {
 
     if (!opts.projectName)
@@ -33,9 +40,11 @@ class TransifexApi {
 
   /**
    * Sends a request
+   * 
    * @param  {string} url     Project relative URL
    * @param  {Object} options Request parameters
-   * @return {Promise}        A q promise
+   * @return {Object}         A q promise
+   * @private
    */
   _send(url, options = {}) {
     const deferred = Q.defer();
@@ -61,8 +70,10 @@ class TransifexApi {
 
   /**
    * Fetches some content from Transifex
+   * 
    * @param {string}   url An API URL relative to the project
-   * @return {Promise}     A q promise
+   * @return {Object}      A q promise
+   * @private
    */
   _get(url) {
     return this._send(url);
@@ -70,8 +81,10 @@ class TransifexApi {
 
   /**
    * Returns a GET response from Transifex as JSON
+   * 
    * @param  {string}  url An API URL relative to the project
-   * @return {Promise}     The response parsed as JSON
+   * @return {Object}      The response parsed as JSON
+   * @private
    */
   _getJson(url) {
     return this._get(url).then(results => JSON.parse(results));
@@ -79,9 +92,11 @@ class TransifexApi {
 
   /**
    * Send a POST request with the given data
+   * 
    * @param  {string}  url  The request URL
-   * @param  {object}  data Key/value request parameters
-   * @return {Promise}      A q promise
+   * @param  {Object}  data Key/value request parameters
+   * @return {Object}       A q promise
+   * @private
    */
   _post(url, data = {}) {
     return this._send(url, {
@@ -93,8 +108,10 @@ class TransifexApi {
 
   /**
    * Sends a DELETE request
+   * 
    * @param  {string}  url The relative request URL
-   * @return {Promise}     A q promise
+   * @return {Object}      A q promise
+   * @private
    */
   _delete(url) {
     return this._send(url, {
@@ -103,8 +120,9 @@ class TransifexApi {
   }
 
   /**
-   * Sets the resource slug
-   * @param {string} resourceName The resource slug
+   * Sets the default resource slug
+   * 
+   * @param {string} resourceName A resource slug
    */
   setResourceName(resourceName) {
     this.resourceName = resourceName;
@@ -112,7 +130,8 @@ class TransifexApi {
 
   /**
    * Returns information about the project
-   * @return {object} A project instance
+   * 
+   * @return {Object} A project instance (wrapper in a promise)
    */
   getProject() {
     return this._getJson('');
@@ -120,6 +139,8 @@ class TransifexApi {
 
   /**
    * Returns an list of languages that belong to the project
+   * 
+   * @return {Object} A list of languages (wrapper in a promise)
    */
   getProjectLanguages() {
     return this._getJson('/languages/');
@@ -127,7 +148,8 @@ class TransifexApi {
 
   /**
    * Returns a list of resources in the project
-   * @return {array} A list of the project's resources
+   * 
+   * @return {array} A list of the project's resources (wrapper in a promise)
    */
   getResources() {
     return this._getJson('/resources');
@@ -135,8 +157,9 @@ class TransifexApi {
 
   /**
    * Returns a resource
+   * 
    * @param  {string} resourceName (Optional) The slug of the requested resource.
-   * @return {object}              A resource as JSON
+   * @return {Object}              A resource as JSON (wrapper in a promise)
    */
   getResource(resourceName) {
     resourceName = resourceName || this.resourceName;
@@ -146,8 +169,9 @@ class TransifexApi {
 
   /**
    * Creates a new resources in the project
-   * @param  {object} resource Dictionary with info about the resource
-   * @return {object}          Success or error object
+   * 
+   * @param  {Object} resource Dictionary with info about the resource
+   * @return {Object}          A q promise
    */
   createResource(resource) {
     return this._post('/resources', resource);
@@ -155,8 +179,9 @@ class TransifexApi {
 
   /**
    * Deletes a resource
+   * 
    * @param  {string} resourceName (Optional) The slug of the resource
-   * @return {object}              Success or error object
+   * @return {Object}              A q promise
    */
   deleteResource(resourceName) {
     resourceName = resourceName || this.resourceName;
@@ -167,6 +192,10 @@ class TransifexApi {
   /**
    * Returns a translation of a given (or default) resource in a given language
    * as .po contents.
+   * 
+   * @param  {string} langCode     A language code, e.g. en_US
+   * @param  {string} resourceName (Optional) A resource slug
+   * @return {string}              A PO file as a string (wrapper in a promise)
    */
   getResourceTranslation(langCode, resourceName) {
     resourceName = resourceName || this.resourceName;
@@ -178,6 +207,11 @@ class TransifexApi {
   /**
    * Returns a set of translated strings of a given (or default) resource in a
    * given language.
+   * 
+   * @param  {string} langCode     A language code, e.g. en_US
+   * @param  {string} resourceName (Optional) A resource slug
+   * @return {string}              A list of translation strings as JSON objects  
+   *                               (wrapper in a promise)
    */
   getTranslationStrings(langCode, resourceName) {
     if (!langCode)

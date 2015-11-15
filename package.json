@@ -4,7 +4,8 @@
   "description": "Promise-based Transifex API client for node, written in es6",
   "main": "TransifexApi.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc2md TransifexApi.js -t docs/README.md.hbs -v --partial docs/partials/body.hbs > README.md"
   },
   "author": "Alexander Wallin <office@alexanderwallin.com> (http://alexanderwallin.com)",
   "license": "ISC",
@@ -19,5 +20,8 @@
   "dependencies": {
     "q": "^1.4.1",
     "request": "^2.65.0"
+  },
+  "devDependencies": {
+    "jsdoc-to-markdown": "^1.2.1"
   }
 }

@@ -1,0 +1,60 @@
+[![view on npm](http://img.shields.io/npm/v/transifex-api-es6.svg)](https://www.npmjs.org/package/transifex-api-es6)
+[![npm module downloads](http://img.shields.io/npm/alexanderwallin/transifex-api-es6.svg)](https://www.npmjs.org/package/transifex-api-es6)
+[![Dependency Status](https://david-dm.org/alexanderwallin/transifex-api-es6.svg)](https://david-dm.org/alexanderwallin/transifex-api-es6)
+
+# transifex-api-es6
+
+A promise-based Transifex API client for node, written in es6. Promises are thenable using the [q library](https://github.com/kriskowal/q).
+
+The motivation behind this API is that there are no modern, promise-based JS API for Transifex out there that I could find. If found those that exist being difficult to overview or understand, so I started building on a new one.
+
+[Installation](#Installation)
+[Usage](#Usage)
+[API Reference](#API_Reference)
+[Contributing](#Contributing)
+
+<a name="Installation"></a>
+## Installation
+
+```bash
+npm install transifex-api-es6
+```
+
+<a name="Usage"></a>
+## Usage
+
+```javascript
+var TransifexApi = require('transifex-api-es6');
+
+var api = new TransifexApi({
+  user: 'username',
+  password: 'password',
+  projectName: 'my-project',
+  resourceName: 'customer-area' // optional
+});
+
+// Get resource translation
+api.getResourceTranslation('en')
+.then((contents) => {
+  // contents -> PO contents as a string
+}, (err) => console.error(err));
+
+// Get translation strings
+api.getTranslationStrings('en', 'my_resource')
+.then((strings) => {
+  // strings -> Set of string objects for 'my_resource'
+}, (err) => console.error(err))
+```
+
+<a name="API_Reference"></a>
+## API Reference
+
+{{#class}}
+{{>member-index~}}
+{{>members~}}
+{{/class}}
+
+<a name="Contributing"></a>
+## Contributing
+
+This project is in early development. Issues and pull requests are more than welcome!
