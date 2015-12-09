@@ -213,15 +213,18 @@ class TransifexApi {
   /**
    * Returns a translation of a given (or default) resource in a given language
    * as .po contents.
+   *
+   * TODO: Support the file option
    * 
    * @param  {string} langCode     A language code, e.g. en_US
+   * @param  {boolean} toFile      Whether to fetch as string contents or file
    * @param  {string} resourceName (Optional) A resource slug
    * @return {string}              A PO file as a string (wrapped in a promise)
    */
   getResourceTranslation(langCode, resourceName) {
     resourceName = resourceName || this.resourceName;
 
-    return this._get('/resource/' + resourceName + '/content')
+    return this._get(`/resource/${resourceName}/translation/${langCode}`)
     .then((results) => JSON.parse(results).content);
   }
 
@@ -241,6 +244,33 @@ class TransifexApi {
     resourceName = resourceName || this.resourceName;
 
     return this._getJson(`/resource/${resourceName}/translation/${langCode}/strings`);
+  }
+
+  /**
+   * Uploads or overrides a resource
+   *
+   * The `resourceData` object needs the following properties:
+   *
+   *  - i18n_type
+   *  - name
+   *  - slug
+   *  - content (a string or a stream) 
+   *
+   * @see http://docs.transifex.com/api/resources/#put_1
+   * 
+   * @param  {Object} resourceData Resource data
+   * @param  {String} resourceName (Optional) A resource slug
+   * @return {Object}              A results object (wrapped in a promise)
+   */
+  updateResource(resourceData, resourceName) {
+    resourceName = resourceName || this.resourceName;
+
+    return this._put(`/resource/${resourceName}/content`, {
+      formData: resourceData,
+      headers: {
+        'Content-type': 'multipart/form-data'
+      }
+    }).then((results) => JSON.parse(results));
   }
 }
 
