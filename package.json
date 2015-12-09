@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "q": "^1.4.1",
-    "request": "^2.65.0"
+    "request": "^2.67.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
