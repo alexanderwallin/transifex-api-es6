@@ -91,6 +91,27 @@ class TransifexApi {
   }
 
   /**
+   * Sends a PUT request with the given set of options
+   * 
+   * @param  {String} url  An API URL relative to the project
+   * @param  {Object} opts A set of options to pass to request()
+   * @return {Object}      The response (wrapped in a promise)
+   * @private
+   */
+  _put(url, opts = {}) {
+    let options = {
+      method: 'PUT'
+    };
+
+    for (let i in opts)
+      options[i] = opts[i];
+
+    console.log('sending put request with options:', url, options);
+
+    return this._send(url, options);
+  }
+
+  /**
    * Send a POST request with the given data
    * 
    * @param  {string}  url  The request URL
