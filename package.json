@@ -3,6 +3,10 @@
   "version": "0.2.1",
   "description": "Promise-based Transifex API client for node, written in es6",
   "main": "dist/TransifexApi.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "jsdoc2md TransifexApi.js -t docs/README.md.hbs -v -d 3 --partial docs/partials/body.hbs > README.md",
