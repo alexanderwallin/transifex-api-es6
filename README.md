@@ -81,17 +81,17 @@ Sets the default resource slug
 #### transifexApi.getProject() ⇒ <code>Object</code>
 Returns information about the project
 
-**Returns**: <code>Object</code> - A project instance (wrapped in a promise)  
+**Returns**: <code>Object</code> - A project instance (wrapped in a promise)
 <a name="TransifexApi+getProjectLanguages"></a>
 #### transifexApi.getProjectLanguages() ⇒ <code>Object</code>
 Returns an list of languages that belong to the project
 
-**Returns**: <code>Object</code> - A list of languages (wrapped in a promise)  
+**Returns**: <code>Object</code> - A list of languages (wrapped in a promise)
 <a name="TransifexApi+getResources"></a>
 #### transifexApi.getResources() ⇒ <code>array</code>
 Returns a list of resources in the project
 
-**Returns**: <code>array</code> - A list of the project's resources (wrapped in a promise)  
+**Returns**: <code>array</code> - A list of the project's resources (wrapped in a promise)
 <a name="TransifexApi+getResource"></a>
 #### transifexApi.getResource(resourceName) ⇒ <code>Object</code>
 Returns a resource
@@ -101,7 +101,7 @@ Returns a resource
 | --- | --- | --- |
 | resourceName | <code>string</code> | (Optional) The slug of the requested resource. |
 
-**Returns**: <code>Object</code> - A resource as JSON (wrapped in a promise)  
+**Returns**: <code>Object</code> - A resource as JSON (wrapped in a promise)
 <a name="TransifexApi+createResource"></a>
 #### transifexApi.createResource(resource) ⇒ <code>Object</code>
 Creates a new resources in the project
@@ -111,7 +111,7 @@ Creates a new resources in the project
 | --- | --- | --- |
 | resource | <code>Object</code> | Dictionary with info about the resource |
 
-**Returns**: <code>Object</code> - A q promise  
+**Returns**: <code>Object</code> - A q promise
 <a name="TransifexApi+deleteResource"></a>
 #### transifexApi.deleteResource(resourceName) ⇒ <code>Object</code>
 Deletes a resource
@@ -121,19 +121,20 @@ Deletes a resource
 | --- | --- | --- |
 | resourceName | <code>string</code> | (Optional) The slug of the resource |
 
-**Returns**: <code>Object</code> - A q promise  
+**Returns**: <code>Object</code> - A q promise
 <a name="TransifexApi+getResourceTranslation"></a>
 #### transifexApi.getResourceTranslation(langCode, resourceName) ⇒ <code>string</code>
 Returns a translation of a given (or default) resource in a given language
-as .po contents.
+in the resource translation file format.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | langCode | <code>string</code> | A language code, e.g. en_US |
 | resourceName | <code>string</code> | (Optional) A resource slug |
+| mode | <code>string</code> | (Optional) A file download mode, available values include "reviewed" and "transaltor" |
 
-**Returns**: <code>string</code> - A PO file as a string (wrapped in a promise)  
+**Returns**: <code>string</code> - A file as a string in the translation file format (wrapped in a promise)
 <a name="TransifexApi+getTranslationStrings"></a>
 #### transifexApi.getTranslationStrings(langCode, resourceName) ⇒ <code>string</code>
 Returns a set of translated strings of a given (or default) resource in a
@@ -145,8 +146,8 @@ given language.
 | langCode | <code>string</code> | A language code, e.g. en_US |
 | resourceName | <code>string</code> | (Optional) A resource slug |
 
-**Returns**: <code>string</code> - A list of translation strings as JSON objects  
-                              (wrapped in a promise)  
+**Returns**: <code>string</code> - A list of translation strings as JSON objects
+                              (wrapped in a promise)
 
 <a name="Contributing"></a>
 ## Contributing
