@@ -40,7 +40,7 @@ class TransifexApi {
 
   /**
    * Sends a request
-   * 
+   *
    * @param  {string} url     Project relative URL
    * @param  {Object} options Request parameters
    * @return {Object}         A q promise
@@ -70,7 +70,7 @@ class TransifexApi {
 
   /**
    * Fetches some content from Transifex
-   * 
+   *
    * @param {string}   url An API URL relative to the project
    * @return {Object}      A q promise
    * @private
@@ -81,7 +81,7 @@ class TransifexApi {
 
   /**
    * Returns a GET response from Transifex as JSON
-   * 
+   *
    * @param  {string}  url An API URL relative to the project
    * @return {Object}      The response parsed as JSON
    * @private
@@ -92,7 +92,7 @@ class TransifexApi {
 
   /**
    * Send a POST request with the given data
-   * 
+   *
    * @param  {string}  url  The request URL
    * @param  {Object}  data Key/value request parameters
    * @return {Object}       A q promise
@@ -108,7 +108,7 @@ class TransifexApi {
 
   /**
    * Sends a DELETE request
-   * 
+   *
    * @param  {string}  url The relative request URL
    * @return {Object}      A q promise
    * @private
@@ -121,7 +121,7 @@ class TransifexApi {
 
   /**
    * Sets the default resource slug
-   * 
+   *
    * @param {string} resourceName A resource slug
    */
   setResourceName(resourceName) {
@@ -130,7 +130,7 @@ class TransifexApi {
 
   /**
    * Returns information about the project
-   * 
+   *
    * @return {Object} A project instance (wrapped in a promise)
    */
   getProject() {
@@ -139,7 +139,7 @@ class TransifexApi {
 
   /**
    * Returns an list of languages that belong to the project
-   * 
+   *
    * @return {Object} A list of languages (wrapped in a promise)
    */
   getProjectLanguages() {
@@ -148,7 +148,7 @@ class TransifexApi {
 
   /**
    * Returns a list of resources in the project
-   * 
+   *
    * @return {array} A list of the project's resources (wrapped in a promise)
    */
   getResources() {
@@ -157,7 +157,7 @@ class TransifexApi {
 
   /**
    * Returns a resource
-   * 
+   *
    * @param  {string} resourceName (Optional) The slug of the requested resource.
    * @return {Object}              A resource as JSON (wrapped in a promise)
    */
@@ -169,7 +169,7 @@ class TransifexApi {
 
   /**
    * Creates a new resources in the project
-   * 
+   *
    * @param  {Object} resource Dictionary with info about the resource
    * @return {Object}          A q promise
    */
@@ -179,7 +179,7 @@ class TransifexApi {
 
   /**
    * Deletes a resource
-   * 
+   *
    * @param  {string} resourceName (Optional) The slug of the resource
    * @return {Object}              A q promise
    */
@@ -191,26 +191,28 @@ class TransifexApi {
 
   /**
    * Returns a translation of a given (or default) resource in a given language
-   * as .po contents.
-   * 
+   * in the resource translation file format.
+   *
    * @param  {string} langCode     A language code, e.g. en_US
    * @param  {string} resourceName (Optional) A resource slug
-   * @return {string}              A PO file as a string (wrapped in a promise)
+   * @param  {string} mode         (Optional) A file download mode, available values include
+                                   "reviewed" and "transaltor"
+   * @return {string}              A file as a string in the translation file format (wrapped in a promise)
    */
-  getResourceTranslation(langCode, resourceName) {
+  getResourceTranslation(langCode, resourceName, mode = 'default') {
     resourceName = resourceName || this.resourceName;
 
-    return this._get('/resource/' + resourceName + '/content')
+    return this._get(`/resource/${resourceName}/translation/${langCode}/?mode=${mode}`)
     .then((results) => JSON.parse(results).content);
   }
 
   /**
    * Returns a set of translated strings of a given (or default) resource in a
    * given language.
-   * 
+   *
    * @param  {string} langCode     A language code, e.g. en_US
    * @param  {string} resourceName (Optional) A resource slug
-   * @return {string}              A list of translation strings as JSON objects  
+   * @return {string}              A list of translation strings as JSON objects
    *                               (wrapped in a promise)
    */
   getTranslationStrings(langCode, resourceName) {
