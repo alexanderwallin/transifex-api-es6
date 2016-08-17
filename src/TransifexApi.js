@@ -219,12 +219,14 @@ class TransifexApi {
    * @param  {string} langCode     A language code, e.g. en_US
    * @param  {boolean} toFile      Whether to fetch as string contents or file
    * @param  {string} resourceName (Optional) A resource slug
+   * @param  {string} mode         (Optional) A file download mode, available values include
+   +                               "reviewed" and "transaltor"
    * @return {string}              A PO file as a string (wrapped in a promise)
    */
-  getResourceTranslation(langCode, resourceName) {
+  getResourceTranslation(langCode, resourceName, mode = 'default') {
     resourceName = resourceName || this.resourceName;
 
-    return this._get(`/resource/${resourceName}/translation/${langCode}`)
+    return this._get(`/resource/${resourceName}/translation/${langCode}/?mode=${mode}`)
     .then((results) => JSON.parse(results).content);
   }
 
