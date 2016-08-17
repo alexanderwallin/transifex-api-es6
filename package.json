@@ -10,6 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "jsdoc2md TransifexApi.js -t docs/README.md.hbs -v -d 3 --partial docs/partials/body.hbs > README.md",
+    "prebuild": "rimraf dist",
     "build": "babel ./src --out-dir ./dist",
     "prepublish": "npm run build"
   },
@@ -31,6 +32,7 @@
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
     "babel-preset-es2015": "^6.3.13",
-    "jsdoc-to-markdown": "^1.2.1"
+    "jsdoc-to-markdown": "^1.2.1",
+    "rimraf": "^2.5.4"
   }
 }
