@@ -35,7 +35,7 @@ class TransifexApi {
     this.password     = opts.password;
     this.resourceName = opts.resourceName;
 
-    this.baseUrl      = `http://www.transifex.com/api/2/project/${this.projectName}`;
+    this.baseUrl      = `https://www.transifex.com/api/2/project/${this.projectName}`;
   }
 
   /**
